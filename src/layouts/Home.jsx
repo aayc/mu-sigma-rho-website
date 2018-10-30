@@ -56,14 +56,13 @@ const HomepageLayout = () => (
               How Do I Join?
             </Header>
             <p style={{ fontSize: '1.33em' }}>
-              Invitations to join will be extended in Winter semester (around February) of 2019.  We require that students:
+              Invitations to join will be extended in Winter semester (around February) of 2019.  We require that students:</p>
               <ul>
                 <li>Have completed two years of college course work</li>
                 <li>Have completed 8 semester hours of statistics courses, of which at least 5 must be junior/senior level.</li>
                 <li>Have a 3.25 GPA in all statistics courses.</li>
                 <li>Be in the top 1/3 of their class in all statistics course work.</li>
               </ul>
-            </p>
           </Grid.Column>
         </Grid.Row>
       </Grid>

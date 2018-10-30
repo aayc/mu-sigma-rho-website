@@ -4,6 +4,7 @@ import {
   Container,
   Grid,
   Header,
+  Image,
   Icon
 } from 'semantic-ui-react'
 import PropTypes from 'prop-types'
@@ -12,19 +13,12 @@ const HomepageHeading = ({ mobile }) => (
   <Container text>
     <Header
       as='h1'
-      content='Mu Sigma Rho'
-      inverted
-      style={{
-        fontSize: mobile ? '2em' : '4em',
-        fontWeight: 'normal',
-        marginBottom: 0,
-        marginTop: mobile ? '1.5em' : '3em',
-      }}
-    />
+    >
+      <Image src='msr-logo.png' style={{width: "600px", height: "600"}}/>
+    </Header>
     <Header
       as='h2'
       content='Participate in the T Shirt Design Contest!'
-      inverted
       style={{
         fontSize: mobile ? '1.5em' : '1.7em',
         fontWeight: 'normal',

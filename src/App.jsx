@@ -51,14 +51,12 @@ class DesktopContainer extends Component {
           onBottomPassedReverse={this.hideFixedMenu}
         >
           <Segment
-            inverted
             textAlign='center'
             style={{ minHeight: (window.location.pathname == "/" ? 700 : 0), padding: '1em 0em' }}
             vertical
           >
             <Menu
               fixed={fixed ? 'top' : null}
-              inverted={!fixed}
               pointing={!fixed}
               secondary={!fixed}
               size='large'
@@ -109,7 +107,7 @@ class MobileContainer extends Component {
     return (
       <Responsive maxWidth={Responsive.onlyMobile.maxWidth}>
         <Sidebar.Pushable>
-          <Sidebar as={Menu} animation='uncover' inverted vertical visible={sidebarOpened}>
+          <Sidebar as={Menu} animation='uncover' vertical visible={sidebarOpened}>
             <Menu.Item as="a">Mu Sigma Rho</Menu.Item>
             <Menu.Item as={Link} to="/" active={window.location.pathname=="/"}>Home</Menu.Item>
             {/*<Menu.Item as={Link} to="/about" active={window.location.pathname=="/about"}>About</Menu.Item>*/}
@@ -125,13 +123,12 @@ class MobileContainer extends Component {
             style={{ minHeight: '100vh' }}
           >
             <Segment
-              inverted
               textAlign='center'
               style={{ minHeight: (window.location.pathname == "/" ? 700 : 0), padding: '1em 0em' }}
               vertical
             >
               <Container>
-                <Menu inverted pointing secondary size='large'>
+                <Menu pointing secondary size='large'>
                   <Menu.Item onClick={this.handleToggle}>
                     <Icon name='sidebar' />
                   </Menu.Item>
