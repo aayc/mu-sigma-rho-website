@@ -2,8 +2,9 @@ import React from 'react'
 import { Component } from 'react'
 import { Grid, Image, Button, Checkbox, Form, Container, Header } from 'semantic-ui-react'
 import request from 'superagent'
+import keys from '../data/keys.json'
 
-const bioUrl = "https://spreadsheets.google.com/feeds/cells/1MstSyY5m7Q0wNqWVNjc8doUwzDWWsrOisXuzn5MQePM/od6/public/values?alt=json-in-script&key=AIzaSyBgmLaHw0yVdKvk3bDc6ygTz6sux4yxILM&callback=CALLBACK"
+const bioUrl = `https://spreadsheets.google.com/feeds/cells/1MstSyY5m7Q0wNqWVNjc8doUwzDWWsrOisXuzn5MQePM/od6/public/values?alt=json-in-script&key=${keys.google_apis}&callback=CALLBACK`
 
 
 class Contact extends Component {

@@ -1,6 +1,5 @@
 import HomepageLayout from './layouts/Home.jsx'
 import HomepageHeading from './layouts/HomeHeading.jsx'
-import AboutLayout from './layouts/About.jsx'
 import ContactLayout from './layouts/Contact.jsx'
 import EventsLayout from './layouts/Events.jsx'
 import PhotosLayout from './layouts/Photos.jsx'
@@ -64,7 +63,6 @@ class DesktopContainer extends Component {
               <Container>
                 <Menu.Item as="a">Mu Sigma Rho</Menu.Item>
                 <Menu.Item as={Link} to="/" active={window.location.pathname=="/"}>Home</Menu.Item>
-                {/*<Menu.Item as={Link} to="/about" active={window.location.pathname=="/about"}>About</Menu.Item>*/}
                 <Menu.Item as={Link} to="/events" active={window.location.pathname=="/events"}>Events</Menu.Item>
                 <Menu.Item as={Link} to="/photos" active={window.location.pathname=="/photos"}>Photos</Menu.Item>
                 <Menu.Item as={Link} to="/contact" active={window.location.pathname=="/contact"}>Contact</Menu.Item>
@@ -110,7 +108,6 @@ class MobileContainer extends Component {
           <Sidebar as={Menu} animation='uncover' vertical visible={sidebarOpened}>
             <Menu.Item as="a">Mu Sigma Rho</Menu.Item>
             <Menu.Item as={Link} to="/" active={window.location.pathname=="/"}>Home</Menu.Item>
-            {/*<Menu.Item as={Link} to="/about" active={window.location.pathname=="/about"}>About</Menu.Item>*/}
             <Menu.Item as={Link} to="/events" active={window.location.pathname=="/events"}>Events</Menu.Item>
             <Menu.Item as={Link} to="/photos" active={window.location.pathname=="/photos"}>Photos</Menu.Item>
             <Menu.Item as={Link} to="/contact" active={window.location.pathname=="/contact"}>Contact</Menu.Item>
@@ -176,7 +173,6 @@ class App extends Component {
         
         <ResponsiveContainer>
           <Route exact path="/" component={HomepageLayout} />
-          <Route exact path="/about" component={AboutLayout} />
           <Route exact path="/events" component={EventsLayout} />
           <Route exact path="/photos" component={PhotosLayout} />
           <Route exact path="/contact" component={ContactLayout} />

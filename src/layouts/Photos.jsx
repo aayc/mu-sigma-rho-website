@@ -1,16 +1,18 @@
 import React, { Component } from 'react'
-import { Grid, Card, Icon, Image, Container } from 'semantic-ui-react'
+import { Grid, Card, Image, Container } from 'semantic-ui-react'
+import request from 'superagent'
+import keys from '../data/keys.json'
+
+const albumUrl = `https://spreadsheets.google.com/feeds/cells/1eCZJqG1cekEOm2xdFmlEm13DHfmsOexKvQykfNr4Ltg/od6/public/values?alt=json-in-script&key=${keys.google_apis}&callback=CALLBACK`
+
 
 class ImageCard extends Component {
-	constructor(props) {
-		super(props)
-	}
-
 	render () {
-		const { imgSrc, header, dateText, description} = this.props
+		const { imgSrc, header, linkTo, dateText, description} = this.props
 
 		return (
-			<Card>
+			<Card
+        href={linkTo}>
 		    <Image src={imgSrc} />
 		    <Card.Content>
 		      <Card.Header>{header}</Card.Header>
@@ -19,12 +21,6 @@ class ImageCard extends Component {
 		      </Card.Meta>
 		      <Card.Description>{description}</Card.Description>
 		    </Card.Content>
-		    {/*<Card.Content extra>
-		      <a>
-		        <Icon name='user' />
-		        22 Friends
-		      </a>
-		    </Card.Content>*/}
 		  </Card>
 		)
 	}
@@ -33,53 +29,50 @@ class ImageCard extends Component {
 class Photos extends Component {
 	constructor(props) {
 		super(props)
+
+    this.state = {
+      photoCards: []
+    }
+
+    request.get(albumUrl).end((err, resp) => {
+      if (!err) {
+        let sheet = JSON.parse(resp.text.substring(resp.text.indexOf("CALLBACK(") + 9, resp.text.length - 2))
+        let data = sheet.feed.entry.filter(cell => cell["gs$cell"].row !== "1")
+        let titles = data.filter(cell => cell["gs$cell"].col === "1").map(cell => cell["gs$cell"]["$t"])
+        let dates = data.filter(cell => cell["gs$cell"].col === "2").map(cell => cell["gs$cell"]["$t"])
+        let descriptions = data.filter(cell => cell["gs$cell"].col === "3").map(cell => cell["gs$cell"]["$t"])
+        let coverLinks = data.filter(cell => cell["gs$cell"].col === "4").map(cell => cell["gs$cell"]["$t"])
+        let albumLinks = data.filter(cell => cell["gs$cell"].col === "5").map(cell => cell["gs$cell"]["$t"])
+
+        let numAlbums = Math.min(titles.length, dates.length, descriptions.length, coverLinks.length, albumLinks.length)
+
+        let cards = this.range(numAlbums).map(i => {
+          return (
+						<ImageCard
+                key={albumLinks[i]}
+								style={{padding: 10}}
+								imgSrc={coverLinks[i]}
+								header={titles[i]}
+								dateText={dates[i]}
+                linkTo={albumLinks[i]}
+								description={descriptions[i]} />
+        )})
+        
+        this.setState({
+          photoCards: cards
+        })
+      }
+    })
 	}
 
 	render () {
-		let testCards = [{ 
-			imgSrc: 'https://react.semantic-ui.com/images/avatar/large/matthew.png', 
-			header: "MSR Opening Social",
-			dateText: "September 27th, 2018",
-			description: "Click me to open the album (not implemented but that's the idea)"
-		}, { 
-			imgSrc: 'https://react.semantic-ui.com/images/avatar/large/matthew.png', 
-			header: "MSR Lunch time",
-			dateText: "October 15th, 2018",
-			description: "This placeholder guy's name is Charles."
-		}, { 
-			imgSrc: 'https://react.semantic-ui.com/images/avatar/large/matthew.png', 
-			header: "Random stuff",
-			dateText: "2018",
-			description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sapien."
-		}, { 
-			imgSrc: 'https://react.semantic-ui.com/images/avatar/large/matthew.png', 
-			header: "Random stuff",
-			dateText: "2018",
-			description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sapien."
-		}, { 
-			imgSrc: 'https://react.semantic-ui.com/images/avatar/large/matthew.png', 
-			header: "Random stuff",
-			dateText: "2018",
-			description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sapien."
-		}, { 
-			imgSrc: 'https://react.semantic-ui.com/images/avatar/large/matthew.png', 
-			header: "Random stuff",
-			dateText: "2018",
-			description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sapien."
-		}]
-
+    const { photoCards } = this.state
 		return (
 			<Container style={{ marginTop: '3em' }}>
 				<Grid columns={3} divided="vertically">
-					{testCards.map(card => (
-							<Grid.Column width={5}>
-								<ImageCard
-									style={{padding: 10}}
-									imgSrc={card.imgSrc}
-									header={card.header}
-									dateText={card.dateText}
-									description={card.description}>
-								</ImageCard>	
+					{photoCards.map(card => (
+							<Grid.Column key={card} width={5}>
+                {card}
 							</Grid.Column>
 						))
 					}
@@ -88,6 +81,8 @@ class Photos extends Component {
 			</Container>
 		)
 	}
+
+  range = (b) => [...Array(b).keys()]
 }
 
 export default Photos
