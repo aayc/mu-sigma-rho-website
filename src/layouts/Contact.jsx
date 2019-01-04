@@ -1,6 +1,6 @@
 import React from 'react'
 import { Component } from 'react'
-import { Grid, Image, Button, Checkbox, Form, Container, Header } from 'semantic-ui-react'
+import { Grid, Card, Icon, Image, Button, Checkbox, Form, Container, Header } from 'semantic-ui-react'
 import request from 'superagent'
 import keys from '../data/keys.json'
 
@@ -55,10 +55,37 @@ class Contact extends Component {
           </Grid.Column>
         </Grid.Row>
         <Grid.Row />
+        <Card.Group itemsPerRow={2} centered>
       {
         this.range(names.length).map(i => {
           return (
-            <Grid.Row>
+            <Card style={{width: 400, marginLeft: 70, marginRight: 70, boxShadow: "none"}}>
+              <center><Image style={{ width: 300, height: "auto"}} src={imgs[i]} /></center>
+              <Card.Content style={{border: 0}}>
+                <Card.Header>{names[i]}</Card.Header>
+                <Card.Meta>{positions[i]}</Card.Meta>
+                <Card.Description>{bios[i]}</Card.Description>
+              </Card.Content>
+            </Card>
+          )
+        })
+      }
+            </Card.Group>
+      </Grid>
+    );
+  }
+}
+
+            /*
+             *
+              <Card.Content extra>
+                <a>
+                  <Icon name='user' />
+                  10 Friends
+                </a>
+              </Card.Content>
+             *
+             * <Grid.Row>
             <Grid.Column width={5}>
             <center><h3>{positions[i] + ": " + names[i]}</h3></center>
             <br />
@@ -67,14 +94,6 @@ class Contact extends Component {
             <Grid.Column width={11}> 
             <p style={{"line-height": 40}}>{bios[i]}</p>
             </Grid.Column>
-            </Grid.Row>
-          )
-        })
-      }
-      </Grid>
-    );
-  }
-}
-
+            </Grid.Row>*/
 
 export default Contact
