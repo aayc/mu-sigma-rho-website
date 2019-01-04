@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import { Grid, Card, Image, Container } from 'semantic-ui-react'
 import request from 'superagent'
-import keys from '../data/keys.json'
-
-const albumUrl = `https://spreadsheets.google.com/feeds/cells/1eCZJqG1cekEOm2xdFmlEm13DHfmsOexKvQykfNr4Ltg/od6/public/values?alt=json-in-script&key=${keys.google_apis}&callback=CALLBACK`
+const albumUrl = `https://spreadsheets.google.com/feeds/cells/1eCZJqG1cekEOm2xdFmlEm13DHfmsOexKvQykfNr4Ltg/od6/public/values?alt=json-in-script&key=${process.env.google_apis}&callback=CALLBACK`
 
 
 class ImageCard extends Component {

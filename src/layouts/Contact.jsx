@@ -1,10 +1,9 @@
 import React from 'react'
 import { Component } from 'react'
-import { Grid, Card, Icon, Image, Button, Checkbox, Form, Container, Header } from 'semantic-ui-react'
+import { Grid, Card, Image, Header } from 'semantic-ui-react'
 import request from 'superagent'
-import keys from '../data/keys.json'
 
-const bioUrl = `https://spreadsheets.google.com/feeds/cells/1MstSyY5m7Q0wNqWVNjc8doUwzDWWsrOisXuzn5MQePM/od6/public/values?alt=json-in-script&key=${keys.google_apis}&callback=CALLBACK`
+const bioUrl = `https://spreadsheets.google.com/feeds/cells/1MstSyY5m7Q0wNqWVNjc8doUwzDWWsrOisXuzn5MQePM/od6/public/values?alt=json-in-script&key=${process.env.google_apis}&callback=CALLBACK`
 
 
 class Contact extends Component {
@@ -23,11 +22,11 @@ class Contact extends Component {
         // of evaluating it, remove the callback part and strip the json out.
         // Then hardcode set the name, position, and biography.  Sorry
         let sheet = JSON.parse(resp.text.substring(resp.text.indexOf("CALLBACK(") + 9, resp.text.length - 2))
-        let data = sheet.feed.entry.filter(cell => cell["gs$cell"].row != "1")
-        let names = data.filter(cell => cell["gs$cell"].col == "1").map(cell => cell["gs$cell"]["$t"])
-        let positions = data.filter(cell => cell["gs$cell"].col == "2").map(cell => cell["gs$cell"]["$t"])
-        let bios = data.filter(cell => cell["gs$cell"].col == "3").map(cell => cell["gs$cell"]["$t"])
-        let imgs = data.filter(cell => cell["gs$cell"].col == "4").map(cell => cell["gs$cell"]["$t"])
+        let data = sheet.feed.entry.filter(cell => cell["gs$cell"].row !== "1")
+        let names = data.filter(cell => cell["gs$cell"].col === "1").map(cell => cell["gs$cell"]["$t"])
+        let positions = data.filter(cell => cell["gs$cell"].col === "2").map(cell => cell["gs$cell"]["$t"])
+        let bios = data.filter(cell => cell["gs$cell"].col === "3").map(cell => cell["gs$cell"]["$t"])
+        let imgs = data.filter(cell => cell["gs$cell"].col === "4").map(cell => cell["gs$cell"]["$t"])
 
         this.setState({
           names: names,

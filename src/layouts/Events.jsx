@@ -5,9 +5,8 @@ import {Container, Header, Card} from 'semantic-ui-react'
 import moment from 'moment'
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import request from 'superagent'
-import keys from '../data/keys.json'
 const CALENDAR_ID = 'mu.sigma.rho@stat.byu.edu'
-const calUrl = `https://www.googleapis.com/calendar/v3/calendars/${CALENDAR_ID}/events?key=${keys.google_apis}`
+const calUrl = `https://www.googleapis.com/calendar/v3/calendars/${CALENDAR_ID}/events?key=${process.env.google_apis}`
 
 const localizer = BigCalendar.momentLocalizer(moment) // or globalizeLocalizer
 
@@ -23,7 +22,6 @@ class Events extends Component {
 		request.get(calUrl).end((err, resp) => {
 			if (!err) {
 				let responseEvents = JSON.parse(resp.text).items.map((event) => {
-					console.log(JSON.stringify(event))
 					return {
 			          	start: new Date(event.start.date || event.start.dateTime),
 			          	end: new Date(event.end.date || event.end.dateTime),

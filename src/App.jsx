@@ -7,14 +7,8 @@ import { BrowserRouter, Route, Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import {
-  Button,
-  Container,
-  Divider,
-  Grid,
-  Header,
   Icon,
-  Image,
-  List,
+  Container,
   Menu,
   Responsive,
   Segment,
@@ -44,14 +38,14 @@ class DesktopContainer extends Component {
 
     return (
       <Responsive minWidth={Responsive.onlyTablet.minWidth}>
-        <Visibility
-          once={false}
-          onBottomPassed={this.showFixedMenu}
-          onBottomPassedReverse={this.hideFixedMenu}
-        >
-          <Segment
-            textAlign='center'
-            style={{ minHeight: (window.location.pathname == "/" ? 700 : 0), padding: '1em 0em' }}
+      <Visibility
+      once={false}
+      onBottomPassed={this.showFixedMenu}
+      onBottomPassedReverse={this.hideFixedMenu}
+      >
+      <Segment
+      textAlign='center'
+      style={{ minHeight: (window.location.pathname === "/" ? 700 : 0), padding: '1em 0em' }}
             vertical
           >
             <Menu
@@ -62,10 +56,10 @@ class DesktopContainer extends Component {
             >
               <Container>
                 <Menu.Item as="a">Mu Sigma Rho</Menu.Item>
-                <Menu.Item as={Link} to="/" active={window.location.pathname=="/"}>Home</Menu.Item>
-                <Menu.Item as={Link} to="/events" active={window.location.pathname=="/events"}>Events</Menu.Item>
-                <Menu.Item as={Link} to="/photos" active={window.location.pathname=="/photos"}>Photos</Menu.Item>
-                <Menu.Item as={Link} to="/contact" active={window.location.pathname=="/contact"}>Contact</Menu.Item>
+                <Menu.Item as={Link} to="/" active={window.location.pathname==="/"}>Home</Menu.Item>
+                <Menu.Item as={Link} to="/events" active={window.location.pathname==="/events"}>Events</Menu.Item>
+                <Menu.Item as={Link} to="/photos" active={window.location.pathname==="/photos"}>Photos</Menu.Item>
+                <Menu.Item as={Link} to="/contact" active={window.location.pathname==="/contact"}>Contact</Menu.Item>
                 {/*<Menu.Item position='right'>
                   <Button as='a' inverted={!fixed}>
                     Log in
@@ -73,7 +67,7 @@ class DesktopContainer extends Component {
                 </Menu.Item>*/}
               </Container>
             </Menu>
-            {window.location.pathname == "/" ? <HomepageHeading /> : <div></div>}
+            {window.location.pathname === "/" ? <HomepageHeading /> : <div></div>}
           </Segment>
         </Visibility>
 
@@ -107,10 +101,10 @@ class MobileContainer extends Component {
         <Sidebar.Pushable>
           <Sidebar as={Menu} animation='uncover' vertical visible={sidebarOpened}>
             <Menu.Item as="a">Mu Sigma Rho</Menu.Item>
-            <Menu.Item as={Link} to="/" active={window.location.pathname=="/"}>Home</Menu.Item>
-            <Menu.Item as={Link} to="/events" active={window.location.pathname=="/events"}>Events</Menu.Item>
-            <Menu.Item as={Link} to="/photos" active={window.location.pathname=="/photos"}>Photos</Menu.Item>
-            <Menu.Item as={Link} to="/contact" active={window.location.pathname=="/contact"}>Contact</Menu.Item>
+            <Menu.Item as={Link} to="/" active={window.location.pathname==="/"}>Home</Menu.Item>
+            <Menu.Item as={Link} to="/events" active={window.location.pathname==="/events"}>Events</Menu.Item>
+            <Menu.Item as={Link} to="/photos" active={window.location.pathname==="/photos"}>Photos</Menu.Item>
+            <Menu.Item as={Link} to="/contact" active={window.location.pathname==="/contact"}>Contact</Menu.Item>
             {/*<Menu.Item as='a'>Log in</Menu.Item>*/}
           </Sidebar>
 
@@ -121,7 +115,7 @@ class MobileContainer extends Component {
           >
             <Segment
               textAlign='center'
-              style={{ minHeight: (window.location.pathname == "/" ? 700 : 0), padding: '1em 0em' }}
+              style={{ minHeight: (window.location.pathname === "/" ? 700 : 0), padding: '1em 0em' }}
               vertical
             >
               <Container>
@@ -136,7 +130,7 @@ class MobileContainer extends Component {
                   </Menu.Item>
                 </Menu>
               </Container>
-              {window.location.pathname == "/" ? <HomepageHeading mobile/> : <div></div>}
+              {window.location.pathname === "/" ? <HomepageHeading mobile/> : <div></div>}
             </Segment>
 
             {children}
@@ -163,10 +157,6 @@ ResponsiveContainer.propTypes = {
 }
 
 class App extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   render () {
     return (
       <BrowserRouter>
