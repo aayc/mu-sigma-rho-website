@@ -3,6 +3,7 @@ import HomepageHeading from './layouts/HomeHeading.jsx'
 import ContactLayout from './layouts/Contact.jsx'
 import EventsLayout from './layouts/Events.jsx'
 import PhotosLayout from './layouts/Photos.jsx'
+import TShirtContestLayout from './layouts/TShirtContest.jsx'
 import { BrowserRouter, Route, Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
@@ -166,6 +167,7 @@ class App extends Component {
           <Route exact path="/events" component={EventsLayout} />
           <Route exact path="/photos" component={PhotosLayout} />
           <Route exact path="/contact" component={ContactLayout} />
+          <Route exact path="/tshirt" component={TShirtContestLayout} />
         </ResponsiveContainer>
         
 
