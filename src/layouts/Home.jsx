@@ -43,7 +43,7 @@ const HomepageLayout = () => (
       <Grid container stackable verticalAlign='middle'>
         <Grid.Row>
           <Grid.Column floated='left' width={6}>
-            <Image bordered rounded size='large' alt="put picture here" src='/images/wireframe/white-image.png' />
+            <Image bordered rounded size='large' alt="put picture here" style={{height: "auto", maxWidth: "100%"}} src='/cohort.jpg' />
           </Grid.Column>
           <Grid.Column width={8}>
             <Header as='h3' style={{ fontSize: '2em' }}>

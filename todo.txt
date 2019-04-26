@@ -1,0 +1,44 @@
+Get the byu components from the web teams of BYU
+
+Header has to be with the right color configuration plus the BYU 
+  - put the buttons as html
+
+Put on the footer
+
+Components get from Pete / his team - slack channel to get access to to get help with the web community on campus
+
+Where can I get the color? components
+Specific fonts that we should use? located in the css look for the header font and the text font
+
+
+TODO:
+  BYU Theming
+    - Font, header footer
+  Data pull
+    - 
+  Maintainability
+  Ejecting react app to readable html?  or...not.  blah but then it has to get compiled every time 
+
+webcommunity.byu.edu/resources
+
+Strategize on this dichotomy tree:
+1. Do we want to modify this website?
+  T 2, F 3
+2. What would be the estimated time to complete this?
+3. What would it take to reformat this to conform to a Drupal site, etc.  what functionality would we sacrifice for what maintainability standard?
+
+Publishing
+Is it a folder?  Drupal?
+Point of reference: drupal
+
+2 options
+1) barebones
+  + control
+  - biggest con maintainability
+2) drupal
+  - extract html
+  - blocks -> thing
+
+send an email to pete talking about pros/cons with the action being please switch to drupal and give us the login credentials, in the meantime extract something for the homepage
+musigmarho.byu.edu - do homepage with pete in the room, and also pre-research what it would take to put calendar.
+
